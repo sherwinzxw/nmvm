@@ -481,6 +481,30 @@
             </summary>
             <param name="documentPath">The physical path to XML document.</param>
         </member>
+        <member name="M:nmvm.Controllers.nmvm.UsersController.GetUsers">
+            <Summary>
+             List the users
+            </Summary>
+        </member>
+        <member name="M:nmvm.Controllers.nmvm.UsersController.GetUser(System.Int32)">
+            <Summary>
+             Get the user by its id
+             <param name="id">The id of the user</param>
+            </Summary>
+        </member>
+        <member name="M:nmvm.Controllers.nmvm.UsersController.PutUser(System.Int32,nmvm.Models.nmvm.User)">
+            <Summary>
+             Update the user
+             <param name="id">The id of the user</param>
+             <param name="user">The update content of the user</param>
+            </Summary>
+        </member>
+        <member name="M:nmvm.Controllers.nmvm.UsersController.PostUser(nmvm.Models.nmvm.User)">
+            <Summary>
+             Create a new user
+             <param name="user">The content of the new user</param>
+            </Summary>
+        </member>
         <member name="M:nmvm.Controllers.ValuesController.Get(System.Int32)">
             <summary>
             Just a demo

@@ -8,6 +8,7 @@
     PreferredName VARCHAR(255) NULL,
     [Email] VARCHAR(255) NOT NULL, 
     [Mobile] VARCHAR(50) NULL, 
+    [IsActiveFlag] BIT NOT NULL DEFAULT(1),
     [CreatedDateTime] DATETIME NOT NULL DEFAULT SYSDATETIME(), 
     [CreatedByUserName] VARCHAR(255) NOT NULL DEFAULT SYSTEM_USER, 
     [CreatedByDisplaName] VARCHAR(255) NOT NULL DEFAULT SYSTEM_USER,

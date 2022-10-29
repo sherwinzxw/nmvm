@@ -19,12 +19,19 @@ namespace nmvm.Controllers.nmvm
         private NMVM_Entities db = new NMVM_Entities();
 
         // GET: api/Users
+        ///<Summary>
+        /// List the users
+        ///</Summary>
         public IQueryable<User> GetUsers()
         {
             return db.Users;
         }
 
         // GET: api/Users/5
+        ///<Summary>
+        /// Get the user by its id
+        /// <param name="id">The id of the user</param>
+        ///</Summary>
         [ResponseType(typeof(User))]
         public async Task<IHttpActionResult> GetUser(int id)
         {
@@ -38,6 +45,11 @@ namespace nmvm.Controllers.nmvm
         }
 
         // PUT: api/Users/5
+        ///<Summary>
+        /// Update the user
+        /// <param name="id">The id of the user</param>
+        /// <param name="user">The update content of the user</param>
+        ///</Summary>
         [ResponseType(typeof(void))]
         public async Task<IHttpActionResult> PutUser(int id, User user)
         {
@@ -51,38 +63,51 @@ namespace nmvm.Controllers.nmvm
                 return BadRequest();
             }
 
-            
-            User user_exist = db.Users.Where(u => u.Id == id).First();
+            User existingUser = db.Users.Where(u => u.Id == id).First();
 
-            try
+            if (existingUser != null)
             {
-                db.usp_UPDATE_User(
-                    user.Id,
-                    string.IsNullOrEmpty(user.Username) ? user_exist.Username : user.Username,
-                    string.IsNullOrEmpty(user.FirstName) ? user_exist.FirstName : user.FirstName,
-                    string.IsNullOrEmpty(user.LastName) ? user_exist.LastName : user.LastName,
-                    string.IsNullOrEmpty(user.Email) ? user_exist.Email : user.Email,
-                    string.IsNullOrEmpty(user.Mobile) ? user_exist.Mobile : user.Mobile,
-                    user.ModifiedByUserName,
-                    user.ModifiedByDisplaName
-               );
+                existingUser.Username = string.IsNullOrEmpty(user.Username) ? existingUser.Username : user.Username;
+                existingUser.FirstName = string.IsNullOrEmpty(user.FirstName) ? existingUser.FirstName : user.FirstName;
+                existingUser.LastName = string.IsNullOrEmpty(user.LastName) ? existingUser.LastName : user.LastName;
+                existingUser.Email = string.IsNullOrEmpty(user.Email) ? existingUser.Email : user.Email;
+                existingUser.Mobile = string.IsNullOrEmpty(user.Mobile) ? existingUser.Mobile : user.Mobile;
+                existingUser.PreferredName = string.IsNullOrEmpty(user.PreferredName) ? existingUser.PreferredName : user.PreferredName;
+                existingUser.Email = string.IsNullOrEmpty(user.Email) ? existingUser.Email : user.Email;
+                existingUser.ModifiedByUserName = string.IsNullOrEmpty(user.ModifiedByUserName) ? existingUser.ModifiedByUserName : user.ModifiedByUserName;
+                existingUser.ModifiedByDisplaName = string.IsNullOrEmpty(user.ModifiedByDisplaName) ? existingUser.ModifiedByDisplaName : user.ModifiedByDisplaName;
+                existingUser.ModifiedDateTime = DateTime.Now;
+
+                try
+                {
+                    await db.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!UserExists(id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
             }
-            catch (DbUpdateConcurrencyException)
+            else
             {
-                if (!UserExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                return NotFound();
             }
+
 
             return StatusCode(HttpStatusCode.NoContent);
         }
 
         // POST: api/Users
+        ///<Summary>
+        /// Create a new user
+        /// <param name="user">The content of the new user</param>
+        ///</Summary>
         [ResponseType(typeof(User))]
         public async Task<IHttpActionResult> PostUser(User user)
         {
@@ -92,6 +117,7 @@ namespace nmvm.Controllers.nmvm
             }
 
             db.Users.Add(user);
+            
             await db.SaveChangesAsync();
 
             return CreatedAtRoute("DefaultApi", new { id = user.Id }, user);
