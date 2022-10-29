@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
-
+using System.Web.Http.Description;
+using System.Net;
+using System.Dynamic;
 namespace nmvm.Controllers
 {
     [Authorize]
@@ -17,6 +18,13 @@ namespace nmvm.Controllers
         }
 
         // GET api/values/5
+
+        /// <summary>
+        /// Just a demo
+        /// </summary>
+        /// <param name="id">The ID of the data.</param>
+        /// <example>Some example content</example>
+        
         public string Get(int id)
         {
             return "value";

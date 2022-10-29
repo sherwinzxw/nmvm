@@ -1,0 +1,803 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="NMVM_Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'NMVM.dbo.Backfill' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Backfill">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="VacancyId" />
+            <PropertyRef Name="BackfillEmployeeId" />
+            <PropertyRef Name="BackfillFte" />
+            <PropertyRef Name="CreatedDateTime" />
+            <PropertyRef Name="CreatedByDisplayName" />
+            <PropertyRef Name="CreatedBySystemName" />
+            <PropertyRef Name="ModifiedDateTime" />
+            <PropertyRef Name="ModifiedByDisplayName" />
+            <PropertyRef Name="ModifiedBySystemName" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VacancyId" Type="int" Nullable="false" />
+          <Property Name="BackfillEmployeeId" Type="int" Nullable="false" />
+          <Property Name="BackfillFte" Type="decimal" Precision="5" Scale="2" Nullable="false" />
+          <Property Name="BackfillFrom" Type="datetime" />
+          <Property Name="BackfillTo" Type="datetime" />
+          <Property Name="BackfillDurationHours" Type="int" />
+          <Property Name="CreatedDateTime" Type="datetime" Nullable="false" />
+          <Property Name="CreatedByDisplayName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="CreatedBySystemName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="ModifiedDateTime" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedByDisplayName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="ModifiedBySystemName" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Contract">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmployeeId" Type="int" Nullable="false" />
+          <Property Name="PositionId" Type="int" Nullable="false" />
+          <Property Name="EffectiveFrom" Type="datetime" Nullable="false" />
+          <Property Name="EffectiveTo" Type="datetime" />
+          <Property Name="ContractType" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="FteFilled" Type="decimal" Precision="5" Scale="2" Nullable="false" />
+          <Property Name="CreatedDateTime" Type="datetime" Nullable="false" />
+          <Property Name="CreatedByDisplayName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="CreatedByUserName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="ModifiedDateTime" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedByDisplayName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="ModifiedByUserName" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmployeeNumber" Type="varchar" MaxLength="12" />
+          <Property Name="FirstName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="MiddleName" Type="varchar" MaxLength="255" />
+          <Property Name="LastName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="WorkPhone" Type="varchar" MaxLength="20" />
+          <Property Name="Mobile" Type="varchar" MaxLength="20" />
+          <Property Name="Email" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Profession" Type="varchar" MaxLength="255" />
+          <Property Name="BirthYear" Type="int" />
+          <Property Name="Gender" Type="varchar" MaxLength="50" />
+          <Property Name="CreatedDateTime" Type="datetime" Nullable="false" />
+          <Property Name="CreatedByDisplayName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="CreatedByUserName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="ModifiedDateTime" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedByDisplayName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="ModifiedByUserName" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Position">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UnitId" Type="int" Nullable="false" />
+          <Property Name="PositionTitle" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="PositionNumber" Type="varchar" MaxLength="12" Nullable="false" />
+          <Property Name="AwardCode" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Grade" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="FteApproved" Type="decimal" Precision="5" Scale="2" Nullable="false" />
+          <Property Name="EffectiveFrom" Type="datetime" Nullable="false" />
+          <Property Name="CreatedDateTime" Type="datetime" Nullable="false" />
+          <Property Name="CreatedByDisplayName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="CreatedBySystemName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="ModifiedDateTime" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedByDisplayName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="ModifiedBySystemName" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'NMVM.dbo.PositionHistory' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="PositionHistory">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="PositionId" />
+            <PropertyRef Name="PosiionTitle" />
+            <PropertyRef Name="PositionNumber" />
+            <PropertyRef Name="ContractType" />
+            <PropertyRef Name="EffectiveFromDateTime" />
+            <PropertyRef Name="EffectiveToDateTime" />
+            <PropertyRef Name="CreatedDateTime" />
+            <PropertyRef Name="CreatedByDisplayName" />
+            <PropertyRef Name="CreatedByUserName" />
+            <PropertyRef Name="ModifiedDateTime" />
+            <PropertyRef Name="ModifiedByDisplayName" />
+            <PropertyRef Name="ModifiedByUserName" />
+            <PropertyRef Name="ArchiveDateTime" />
+            <PropertyRef Name="ArchiveByUserName" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PositionId" Type="int" Nullable="false" />
+          <Property Name="PosiionTitle" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="PositionNumber" Type="varchar" MaxLength="12" Nullable="false" />
+          <Property Name="ContractType" Type="varchar" MaxLength="12" Nullable="false" />
+          <Property Name="EffectiveFromDateTime" Type="datetime" Nullable="false" />
+          <Property Name="EffectiveToDateTime" Type="datetime" Nullable="false" />
+          <Property Name="CreatedDateTime" Type="datetime" Nullable="false" />
+          <Property Name="CreatedByDisplayName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="CreatedByUserName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="ModifiedDateTime" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedByDisplayName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="ModifiedByUserName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="ArchiveDateTime" Type="datetime" Nullable="false" />
+          <Property Name="ArchiveByUserName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="ArchiveByDisplayName" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Reference">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DomainCode" Type="varchar" MaxLength="12" Nullable="false" />
+          <Property Name="Code" Type="varchar" MaxLength="12" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Label" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="EffectiveFromDateTime" Type="datetime" Nullable="false" />
+          <Property Name="EffectiveToDateTime" Type="datetime" />
+          <Property Name="ActiveFlag" Type="bit" Nullable="false" />
+          <Property Name="CreatedDateTime" Type="datetime" Nullable="false" />
+          <Property Name="CreatedByDisplayName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="CreatedByUserName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="ModifiedDateTime" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedByDisplayName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="ModifiedByUserName" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ReferenceDomain">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DomainCode" Type="varchar" MaxLength="12" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="EffectiveFromDateTime" Type="datetime" Nullable="false" />
+          <Property Name="EffectiveToDateTime" Type="datetime" />
+          <Property Name="ActiveFlag" Type="bit" Nullable="false" />
+          <Property Name="CreatedDateTime" Type="datetime" Nullable="false" />
+          <Property Name="CreatedByDisplayName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="CreatedByUserName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="ModifiedDateTime" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedByDisplayName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="ModifiedByUserName" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Unit">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UnitCode" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="UnitName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="UnitDescription" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Facility" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Region" Type="varchar" MaxLength="12" Nullable="false" />
+          <Property Name="EffectiveFromDateTime" Type="datetime" Nullable="false" />
+          <Property Name="EffectiveToDateTime" Type="datetime" />
+          <Property Name="CreatedDateTime" Type="datetime" Nullable="false" />
+          <Property Name="CreatedByDisplayName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="CreatedByUserName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="ModifiedDateTime" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedByDisplayName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="ModifiedByUserName" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Username" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="LastName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="MiddleName" Type="varchar" MaxLength="255" />
+          <Property Name="PreferredName" Type="varchar" MaxLength="255" />
+          <Property Name="Email" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Mobile" Type="varchar" MaxLength="50" />
+          <Property Name="CreatedDateTime" Type="datetime" Nullable="false" />
+          <Property Name="CreatedByUserName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="CreatedByDisplaName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="ModifiedDateTime" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedByUserName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="ModifiedByDisplaName" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Vacancy">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VacancyType" Type="varchar" MaxLength="12" Nullable="false" />
+          <Property Name="ContractId" Type="int" Nullable="false" />
+          <Property Name="PositionId" Type="int" Nullable="false" />
+          <Property Name="VacantFte" Type="decimal" Precision="5" Scale="2" Nullable="false" />
+          <Property Name="ReasonCode" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="ReasonDetails" Type="varchar" MaxLength="1000" />
+          <Property Name="VacantFromDateTime" Type="datetime" Nullable="false" />
+          <Property Name="VacantToDateTime" Type="datetime" />
+          <Property Name="VacantDurationHours" Type="int" Nullable="false" />
+          <Property Name="Comments" Type="varchar" MaxLength="1000" />
+          <Property Name="CreatedDateTime" Type="datetime" Nullable="false" />
+          <Property Name="CreatedByDisplayName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="CreatedByUserName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="ModifiedByUserName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="ModifiedDateTime" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedByDisplayName" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <Function Name="usp_INSERT_User" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Username" Type="varchar" Mode="In" />
+          <Parameter Name="FirstName" Type="varchar" Mode="In" />
+          <Parameter Name="LastName" Type="varchar" Mode="In" />
+          <Parameter Name="Email" Type="varchar" Mode="In" />
+          <Parameter Name="Mobile" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="usp_UPDATE_User" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+          <Parameter Name="Username" Type="varchar" Mode="In" />
+          <Parameter Name="FirstName" Type="varchar" Mode="In" />
+          <Parameter Name="LastName" Type="varchar" Mode="In" />
+          <Parameter Name="Email" Type="varchar" Mode="In" />
+          <Parameter Name="Mobile" Type="varchar" Mode="In" />
+          <Parameter Name="ModifiedByUserName" Type="varchar" Mode="In" />
+          <Parameter Name="ModifiedByDisplayName" Type="varchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="NMVM_ModelStoreContainer">
+          <EntitySet Name="Contract" EntityType="Self.Contract" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Position" EntityType="Self.Position" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reference" EntityType="Self.Reference" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ReferenceDomain" EntityType="Self.ReferenceDomain" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Unit" EntityType="Self.Unit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserRole" EntityType="Self.UserRole" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vacancy" EntityType="Self.Vacancy" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Backfill" EntityType="Self.Backfill" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Backfill].[Id] AS [Id], 
+    [Backfill].[VacancyId] AS [VacancyId], 
+    [Backfill].[BackfillEmployeeId] AS [BackfillEmployeeId], 
+    [Backfill].[BackfillFte] AS [BackfillFte], 
+    [Backfill].[BackfillFrom] AS [BackfillFrom], 
+    [Backfill].[BackfillTo] AS [BackfillTo], 
+    [Backfill].[BackfillDurationHours] AS [BackfillDurationHours], 
+    [Backfill].[CreatedDateTime] AS [CreatedDateTime], 
+    [Backfill].[CreatedByDisplayName] AS [CreatedByDisplayName], 
+    [Backfill].[CreatedBySystemName] AS [CreatedBySystemName], 
+    [Backfill].[ModifiedDateTime] AS [ModifiedDateTime], 
+    [Backfill].[ModifiedByDisplayName] AS [ModifiedByDisplayName], 
+    [Backfill].[ModifiedBySystemName] AS [ModifiedBySystemName]
+    FROM [dbo].[Backfill] AS [Backfill]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="PositionHistory" EntityType="Self.PositionHistory" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [PositionHistory].[Id] AS [Id], 
+    [PositionHistory].[PositionId] AS [PositionId], 
+    [PositionHistory].[PosiionTitle] AS [PosiionTitle], 
+    [PositionHistory].[PositionNumber] AS [PositionNumber], 
+    [PositionHistory].[ContractType] AS [ContractType], 
+    [PositionHistory].[EffectiveFromDateTime] AS [EffectiveFromDateTime], 
+    [PositionHistory].[EffectiveToDateTime] AS [EffectiveToDateTime], 
+    [PositionHistory].[CreatedDateTime] AS [CreatedDateTime], 
+    [PositionHistory].[CreatedByDisplayName] AS [CreatedByDisplayName], 
+    [PositionHistory].[CreatedByUserName] AS [CreatedByUserName], 
+    [PositionHistory].[ModifiedDateTime] AS [ModifiedDateTime], 
+    [PositionHistory].[ModifiedByDisplayName] AS [ModifiedByDisplayName], 
+    [PositionHistory].[ModifiedByUserName] AS [ModifiedByUserName], 
+    [PositionHistory].[ArchiveDateTime] AS [ArchiveDateTime], 
+    [PositionHistory].[ArchiveByUserName] AS [ArchiveByUserName], 
+    [PositionHistory].[ArchiveByDisplayName] AS [ArchiveByDisplayName]
+    FROM [dbo].[PositionHistory] AS [PositionHistory]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="NMVM_Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Contract">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeId" Type="Int32" Nullable="false" />
+          <Property Name="PositionId" Type="Int32" Nullable="false" />
+          <Property Name="EffectiveFrom" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EffectiveTo" Type="DateTime" Precision="3" />
+          <Property Name="ContractType" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FteFilled" Type="Decimal" Precision="5" Scale="2" Nullable="false" />
+          <Property Name="CreatedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedByDisplayName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreatedByUserName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ModifiedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedByDisplayName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ModifiedByUserName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeNumber" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="FirstName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MiddleName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="WorkPhone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Mobile" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Profession" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="BirthYear" Type="Int32" />
+          <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedByDisplayName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreatedByUserName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ModifiedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedByDisplayName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ModifiedByUserName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Position">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UnitId" Type="Int32" Nullable="false" />
+          <Property Name="PositionTitle" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PositionNumber" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AwardCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Grade" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FteApproved" Type="Decimal" Precision="5" Scale="2" Nullable="false" />
+          <Property Name="EffectiveFrom" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedByDisplayName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreatedBySystemName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ModifiedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedByDisplayName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ModifiedBySystemName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Reference">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DomainCode" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Code" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Label" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EffectiveFromDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EffectiveToDateTime" Type="DateTime" Precision="3" />
+          <Property Name="ActiveFlag" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedByDisplayName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreatedByUserName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ModifiedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedByDisplayName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ModifiedByUserName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ReferenceDomain">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DomainCode" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EffectiveFromDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EffectiveToDateTime" Type="DateTime" Precision="3" />
+          <Property Name="ActiveFlag" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedByDisplayName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreatedByUserName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ModifiedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedByDisplayName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ModifiedByUserName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Unit">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UnitCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UnitName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UnitDescription" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Facility" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Region" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EffectiveFromDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EffectiveToDateTime" Type="DateTime" Precision="3" />
+          <Property Name="CreatedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedByDisplayName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreatedByUserName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ModifiedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedByDisplayName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ModifiedByUserName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MiddleName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="PreferredName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedByUserName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreatedByDisplaName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ModifiedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedByUserName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ModifiedByDisplaName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Vacancy">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VacancyType" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ContractId" Type="Int32" Nullable="false" />
+          <Property Name="PositionId" Type="Int32" Nullable="false" />
+          <Property Name="VacantFte" Type="Decimal" Precision="5" Scale="2" Nullable="false" />
+          <Property Name="ReasonCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ReasonDetails" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="VacantFromDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="VacantToDateTime" Type="DateTime" Precision="3" />
+          <Property Name="VacantDurationHours" Type="Int32" Nullable="false" />
+          <Property Name="Comments" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedByDisplayName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreatedByUserName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ModifiedByUserName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ModifiedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedByDisplayName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Backfill">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="VacancyId" />
+            <PropertyRef Name="BackfillEmployeeId" />
+            <PropertyRef Name="BackfillFte" />
+            <PropertyRef Name="CreatedDateTime" />
+            <PropertyRef Name="CreatedByDisplayName" />
+            <PropertyRef Name="CreatedBySystemName" />
+            <PropertyRef Name="ModifiedDateTime" />
+            <PropertyRef Name="ModifiedByDisplayName" />
+            <PropertyRef Name="ModifiedBySystemName" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VacancyId" Type="Int32" Nullable="false" />
+          <Property Name="BackfillEmployeeId" Type="Int32" Nullable="false" />
+          <Property Name="BackfillFte" Type="Decimal" Precision="5" Scale="2" Nullable="false" />
+          <Property Name="BackfillFrom" Type="DateTime" Precision="3" />
+          <Property Name="BackfillTo" Type="DateTime" Precision="3" />
+          <Property Name="BackfillDurationHours" Type="Int32" />
+          <Property Name="CreatedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedByDisplayName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreatedBySystemName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ModifiedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedByDisplayName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ModifiedBySystemName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PositionHistory">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="PositionId" />
+            <PropertyRef Name="PosiionTitle" />
+            <PropertyRef Name="PositionNumber" />
+            <PropertyRef Name="ContractType" />
+            <PropertyRef Name="EffectiveFromDateTime" />
+            <PropertyRef Name="EffectiveToDateTime" />
+            <PropertyRef Name="CreatedDateTime" />
+            <PropertyRef Name="CreatedByDisplayName" />
+            <PropertyRef Name="CreatedByUserName" />
+            <PropertyRef Name="ModifiedDateTime" />
+            <PropertyRef Name="ModifiedByDisplayName" />
+            <PropertyRef Name="ModifiedByUserName" />
+            <PropertyRef Name="ArchiveDateTime" />
+            <PropertyRef Name="ArchiveByUserName" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PositionId" Type="Int32" Nullable="false" />
+          <Property Name="PosiionTitle" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PositionNumber" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ContractType" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EffectiveFromDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EffectiveToDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedByDisplayName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreatedByUserName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ModifiedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedByDisplayName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ModifiedByUserName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ArchiveDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ArchiveByUserName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ArchiveByDisplayName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="NMVM_Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Contracts" EntityType="Self.Contract" />
+          <EntitySet Name="Employees" EntityType="Self.Employee" />
+          <EntitySet Name="Positions" EntityType="Self.Position" />
+          <EntitySet Name="References" EntityType="Self.Reference" />
+          <EntitySet Name="ReferenceDomains" EntityType="Self.ReferenceDomain" />
+          <EntitySet Name="Units" EntityType="Self.Unit" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="UserRoles" EntityType="Self.UserRole" />
+          <EntitySet Name="Vacancies" EntityType="Self.Vacancy" />
+          <EntitySet Name="Backfills" EntityType="Self.Backfill" />
+          <EntitySet Name="PositionHistories" EntityType="Self.PositionHistory" />
+          <FunctionImport Name="usp_INSERT_User">
+            <Parameter Name="Username" Mode="In" Type="String" />
+            <Parameter Name="FirstName" Mode="In" Type="String" />
+            <Parameter Name="LastName" Mode="In" Type="String" />
+            <Parameter Name="Email" Mode="In" Type="String" />
+            <Parameter Name="Mobile" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_UPDATE_User">
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+            <Parameter Name="Username" Mode="In" Type="String" />
+            <Parameter Name="FirstName" Mode="In" Type="String" />
+            <Parameter Name="LastName" Mode="In" Type="String" />
+            <Parameter Name="Email" Mode="In" Type="String" />
+            <Parameter Name="Mobile" Mode="In" Type="String" />
+            <Parameter Name="ModifiedByUserName" Mode="In" Type="String" />
+            <Parameter Name="ModifiedByDisplayName" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="NMVM_ModelStoreContainer" CdmEntityContainer="NMVM_Entities">
+          <EntitySetMapping Name="Contracts">
+            <EntityTypeMapping TypeName="NMVM_Model.Contract">
+              <MappingFragment StoreEntitySet="Contract">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="PositionId" ColumnName="PositionId" />
+                <ScalarProperty Name="EffectiveFrom" ColumnName="EffectiveFrom" />
+                <ScalarProperty Name="EffectiveTo" ColumnName="EffectiveTo" />
+                <ScalarProperty Name="ContractType" ColumnName="ContractType" />
+                <ScalarProperty Name="FteFilled" ColumnName="FteFilled" />
+                <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
+                <ScalarProperty Name="CreatedByDisplayName" ColumnName="CreatedByDisplayName" />
+                <ScalarProperty Name="CreatedByUserName" ColumnName="CreatedByUserName" />
+                <ScalarProperty Name="ModifiedDateTime" ColumnName="ModifiedDateTime" />
+                <ScalarProperty Name="ModifiedByDisplayName" ColumnName="ModifiedByDisplayName" />
+                <ScalarProperty Name="ModifiedByUserName" ColumnName="ModifiedByUserName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employees">
+            <EntityTypeMapping TypeName="NMVM_Model.Employee">
+              <MappingFragment StoreEntitySet="Employee">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="EmployeeNumber" ColumnName="EmployeeNumber" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="WorkPhone" ColumnName="WorkPhone" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Profession" ColumnName="Profession" />
+                <ScalarProperty Name="BirthYear" ColumnName="BirthYear" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
+                <ScalarProperty Name="CreatedByDisplayName" ColumnName="CreatedByDisplayName" />
+                <ScalarProperty Name="CreatedByUserName" ColumnName="CreatedByUserName" />
+                <ScalarProperty Name="ModifiedDateTime" ColumnName="ModifiedDateTime" />
+                <ScalarProperty Name="ModifiedByDisplayName" ColumnName="ModifiedByDisplayName" />
+                <ScalarProperty Name="ModifiedByUserName" ColumnName="ModifiedByUserName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Positions">
+            <EntityTypeMapping TypeName="NMVM_Model.Position">
+              <MappingFragment StoreEntitySet="Position">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UnitId" ColumnName="UnitId" />
+                <ScalarProperty Name="PositionTitle" ColumnName="PositionTitle" />
+                <ScalarProperty Name="PositionNumber" ColumnName="PositionNumber" />
+                <ScalarProperty Name="AwardCode" ColumnName="AwardCode" />
+                <ScalarProperty Name="Grade" ColumnName="Grade" />
+                <ScalarProperty Name="FteApproved" ColumnName="FteApproved" />
+                <ScalarProperty Name="EffectiveFrom" ColumnName="EffectiveFrom" />
+                <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
+                <ScalarProperty Name="CreatedByDisplayName" ColumnName="CreatedByDisplayName" />
+                <ScalarProperty Name="CreatedBySystemName" ColumnName="CreatedBySystemName" />
+                <ScalarProperty Name="ModifiedDateTime" ColumnName="ModifiedDateTime" />
+                <ScalarProperty Name="ModifiedByDisplayName" ColumnName="ModifiedByDisplayName" />
+                <ScalarProperty Name="ModifiedBySystemName" ColumnName="ModifiedBySystemName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="References">
+            <EntityTypeMapping TypeName="NMVM_Model.Reference">
+              <MappingFragment StoreEntitySet="Reference">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="DomainCode" ColumnName="DomainCode" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Label" ColumnName="Label" />
+                <ScalarProperty Name="EffectiveFromDateTime" ColumnName="EffectiveFromDateTime" />
+                <ScalarProperty Name="EffectiveToDateTime" ColumnName="EffectiveToDateTime" />
+                <ScalarProperty Name="ActiveFlag" ColumnName="ActiveFlag" />
+                <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
+                <ScalarProperty Name="CreatedByDisplayName" ColumnName="CreatedByDisplayName" />
+                <ScalarProperty Name="CreatedByUserName" ColumnName="CreatedByUserName" />
+                <ScalarProperty Name="ModifiedDateTime" ColumnName="ModifiedDateTime" />
+                <ScalarProperty Name="ModifiedByDisplayName" ColumnName="ModifiedByDisplayName" />
+                <ScalarProperty Name="ModifiedByUserName" ColumnName="ModifiedByUserName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReferenceDomains">
+            <EntityTypeMapping TypeName="NMVM_Model.ReferenceDomain">
+              <MappingFragment StoreEntitySet="ReferenceDomain">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="DomainCode" ColumnName="DomainCode" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="EffectiveFromDateTime" ColumnName="EffectiveFromDateTime" />
+                <ScalarProperty Name="EffectiveToDateTime" ColumnName="EffectiveToDateTime" />
+                <ScalarProperty Name="ActiveFlag" ColumnName="ActiveFlag" />
+                <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
+                <ScalarProperty Name="CreatedByDisplayName" ColumnName="CreatedByDisplayName" />
+                <ScalarProperty Name="CreatedByUserName" ColumnName="CreatedByUserName" />
+                <ScalarProperty Name="ModifiedDateTime" ColumnName="ModifiedDateTime" />
+                <ScalarProperty Name="ModifiedByDisplayName" ColumnName="ModifiedByDisplayName" />
+                <ScalarProperty Name="ModifiedByUserName" ColumnName="ModifiedByUserName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Units">
+            <EntityTypeMapping TypeName="NMVM_Model.Unit">
+              <MappingFragment StoreEntitySet="Unit">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UnitCode" ColumnName="UnitCode" />
+                <ScalarProperty Name="UnitName" ColumnName="UnitName" />
+                <ScalarProperty Name="UnitDescription" ColumnName="UnitDescription" />
+                <ScalarProperty Name="Facility" ColumnName="Facility" />
+                <ScalarProperty Name="Region" ColumnName="Region" />
+                <ScalarProperty Name="EffectiveFromDateTime" ColumnName="EffectiveFromDateTime" />
+                <ScalarProperty Name="EffectiveToDateTime" ColumnName="EffectiveToDateTime" />
+                <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
+                <ScalarProperty Name="CreatedByDisplayName" ColumnName="CreatedByDisplayName" />
+                <ScalarProperty Name="CreatedByUserName" ColumnName="CreatedByUserName" />
+                <ScalarProperty Name="ModifiedDateTime" ColumnName="ModifiedDateTime" />
+                <ScalarProperty Name="ModifiedByDisplayName" ColumnName="ModifiedByDisplayName" />
+                <ScalarProperty Name="ModifiedByUserName" ColumnName="ModifiedByUserName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="NMVM_Model.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="PreferredName" ColumnName="PreferredName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
+                <ScalarProperty Name="CreatedByUserName" ColumnName="CreatedByUserName" />
+                <ScalarProperty Name="CreatedByDisplaName" ColumnName="CreatedByDisplaName" />
+                <ScalarProperty Name="ModifiedDateTime" ColumnName="ModifiedDateTime" />
+                <ScalarProperty Name="ModifiedByUserName" ColumnName="ModifiedByUserName" />
+                <ScalarProperty Name="ModifiedByDisplaName" ColumnName="ModifiedByDisplaName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserRoles">
+            <EntityTypeMapping TypeName="NMVM_Model.UserRole">
+              <MappingFragment StoreEntitySet="UserRole">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vacancies">
+            <EntityTypeMapping TypeName="NMVM_Model.Vacancy">
+              <MappingFragment StoreEntitySet="Vacancy">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="VacancyType" ColumnName="VacancyType" />
+                <ScalarProperty Name="ContractId" ColumnName="ContractId" />
+                <ScalarProperty Name="PositionId" ColumnName="PositionId" />
+                <ScalarProperty Name="VacantFte" ColumnName="VacantFte" />
+                <ScalarProperty Name="ReasonCode" ColumnName="ReasonCode" />
+                <ScalarProperty Name="ReasonDetails" ColumnName="ReasonDetails" />
+                <ScalarProperty Name="VacantFromDateTime" ColumnName="VacantFromDateTime" />
+                <ScalarProperty Name="VacantToDateTime" ColumnName="VacantToDateTime" />
+                <ScalarProperty Name="VacantDurationHours" ColumnName="VacantDurationHours" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
+                <ScalarProperty Name="CreatedByDisplayName" ColumnName="CreatedByDisplayName" />
+                <ScalarProperty Name="CreatedByUserName" ColumnName="CreatedByUserName" />
+                <ScalarProperty Name="ModifiedByUserName" ColumnName="ModifiedByUserName" />
+                <ScalarProperty Name="ModifiedDateTime" ColumnName="ModifiedDateTime" />
+                <ScalarProperty Name="ModifiedByDisplayName" ColumnName="ModifiedByDisplayName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Backfills">
+            <EntityTypeMapping TypeName="NMVM_Model.Backfill">
+              <MappingFragment StoreEntitySet="Backfill">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="VacancyId" ColumnName="VacancyId" />
+                <ScalarProperty Name="BackfillEmployeeId" ColumnName="BackfillEmployeeId" />
+                <ScalarProperty Name="BackfillFte" ColumnName="BackfillFte" />
+                <ScalarProperty Name="BackfillFrom" ColumnName="BackfillFrom" />
+                <ScalarProperty Name="BackfillTo" ColumnName="BackfillTo" />
+                <ScalarProperty Name="BackfillDurationHours" ColumnName="BackfillDurationHours" />
+                <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
+                <ScalarProperty Name="CreatedByDisplayName" ColumnName="CreatedByDisplayName" />
+                <ScalarProperty Name="CreatedBySystemName" ColumnName="CreatedBySystemName" />
+                <ScalarProperty Name="ModifiedDateTime" ColumnName="ModifiedDateTime" />
+                <ScalarProperty Name="ModifiedByDisplayName" ColumnName="ModifiedByDisplayName" />
+                <ScalarProperty Name="ModifiedBySystemName" ColumnName="ModifiedBySystemName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PositionHistories">
+            <EntityTypeMapping TypeName="NMVM_Model.PositionHistory">
+              <MappingFragment StoreEntitySet="PositionHistory">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PositionId" ColumnName="PositionId" />
+                <ScalarProperty Name="PosiionTitle" ColumnName="PosiionTitle" />
+                <ScalarProperty Name="PositionNumber" ColumnName="PositionNumber" />
+                <ScalarProperty Name="ContractType" ColumnName="ContractType" />
+                <ScalarProperty Name="EffectiveFromDateTime" ColumnName="EffectiveFromDateTime" />
+                <ScalarProperty Name="EffectiveToDateTime" ColumnName="EffectiveToDateTime" />
+                <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
+                <ScalarProperty Name="CreatedByDisplayName" ColumnName="CreatedByDisplayName" />
+                <ScalarProperty Name="CreatedByUserName" ColumnName="CreatedByUserName" />
+                <ScalarProperty Name="ModifiedDateTime" ColumnName="ModifiedDateTime" />
+                <ScalarProperty Name="ModifiedByDisplayName" ColumnName="ModifiedByDisplayName" />
+                <ScalarProperty Name="ModifiedByUserName" ColumnName="ModifiedByUserName" />
+                <ScalarProperty Name="ArchiveDateTime" ColumnName="ArchiveDateTime" />
+                <ScalarProperty Name="ArchiveByUserName" ColumnName="ArchiveByUserName" />
+                <ScalarProperty Name="ArchiveByDisplayName" ColumnName="ArchiveByDisplayName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="usp_INSERT_User" FunctionName="NMVM_Model.Store.usp_INSERT_User" />
+          <FunctionImportMapping FunctionImportName="usp_UPDATE_User" FunctionName="NMVM_Model.Store.usp_UPDATE_User" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
