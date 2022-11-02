@@ -512,5 +512,15 @@
             <param name="id">The ID of the data.</param>
             <example>Some example content</example>
         </member>
+        <member name="T:nmvm.Utilities.ObjectMerger">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:nmvm.Utilities.ObjectMerger.Upsert``1(``0,``0)">
+            <summary>
+            
+            </summary>
+        </member>
     </members>
 </doc>

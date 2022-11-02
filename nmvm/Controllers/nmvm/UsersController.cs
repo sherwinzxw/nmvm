@@ -9,8 +9,11 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using nmvm;
 using nmvm.Models.nmvm;
+using nmvm.Utilities;
 
 namespace nmvm.Controllers.nmvm
 {
@@ -67,15 +70,7 @@ namespace nmvm.Controllers.nmvm
 
             if (existingUser != null)
             {
-                existingUser.Username = string.IsNullOrEmpty(user.Username) ? existingUser.Username : user.Username;
-                existingUser.FirstName = string.IsNullOrEmpty(user.FirstName) ? existingUser.FirstName : user.FirstName;
-                existingUser.LastName = string.IsNullOrEmpty(user.LastName) ? existingUser.LastName : user.LastName;
-                existingUser.Email = string.IsNullOrEmpty(user.Email) ? existingUser.Email : user.Email;
-                existingUser.Mobile = string.IsNullOrEmpty(user.Mobile) ? existingUser.Mobile : user.Mobile;
-                existingUser.PreferredName = string.IsNullOrEmpty(user.PreferredName) ? existingUser.PreferredName : user.PreferredName;
-                existingUser.Email = string.IsNullOrEmpty(user.Email) ? existingUser.Email : user.Email;
-                existingUser.ModifiedByUserName = string.IsNullOrEmpty(user.ModifiedByUserName) ? existingUser.ModifiedByUserName : user.ModifiedByUserName;
-                existingUser.ModifiedByDisplaName = string.IsNullOrEmpty(user.ModifiedByDisplaName) ? existingUser.ModifiedByDisplaName : user.ModifiedByDisplaName;
+                existingUser = ObjectMerger.Upsert(existingUser, user);
                 existingUser.ModifiedDateTime = DateTime.Now;
 
                 try
