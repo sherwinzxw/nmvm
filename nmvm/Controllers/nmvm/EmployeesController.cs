@@ -39,21 +39,34 @@ namespace nmvm.Controllers.nmvm
 
         // PUT: api/Employees/5
         [ResponseType(typeof(void))]
-        public async Task<IHttpActionResult> PutEmployee(int id, Employee employee)
+        public async Task<IHttpActionResult> PutEmployee(int id, [FromBody] dynamic employee)
         {
+            int _id;
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != employee.Id)
+            try
+            {
+                if (Int32.TryParse(employee.id.Value.ToString(), out _id))
+                {
+                    _id = Int32.Parse(employee.id.Value.ToString());
+                }
+            }
+            catch (Exception e)
+            {
+                return Content(HttpStatusCode.BadRequest, "Error Message: " + e.Message);
+            }
+
+            if (id != _id)
             {
                 return BadRequest();
             }
 
             Employee existingEmployee = db.Employees.Where(u => u.Id == id).First();
             Employee merge = ObjectMerger.UpsertDynamic(existingEmployee, employee);
-            merge.ModifiedDateTime = DateTime.Now;
             if (existingEmployee != null)
             {
                 db.Entry(existingEmployee).CurrentValues.SetValues(merge);
