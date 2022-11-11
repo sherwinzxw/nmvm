@@ -28,5 +28,6 @@ namespace nmvm.Models.nmvm
         public System.DateTime ModifiedDateTime { get; set; }
         public string ModifiedByUserName { get; set; }
         public string ModifiedByDisplaName { get; set; }
+        public bool IsActiveFlag { get; set; }
     }
 }

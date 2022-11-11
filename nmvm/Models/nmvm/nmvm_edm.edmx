@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="NMVM_Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="NMVM_Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <!--Errors Found During Generation:
 warning 6002: The table/view 'NMVM.dbo.Backfill' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Backfill">
@@ -73,6 +73,7 @@ warning 6002: The table/view 'NMVM.dbo.Backfill' does not have a primary key def
           <Property Name="ModifiedDateTime" Type="datetime" Nullable="false" />
           <Property Name="ModifiedByDisplayName" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="ModifiedByUserName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="IsActive" Type="bit" />
         </EntityType>
         <EntityType Name="Position">
           <Key>
@@ -198,6 +199,7 @@ warning 6002: The table/view 'NMVM.dbo.PositionHistory' does not have a primary 
           <Property Name="PreferredName" Type="varchar" MaxLength="255" />
           <Property Name="Email" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="Mobile" Type="varchar" MaxLength="50" />
+          <Property Name="IsActiveFlag" Type="bit" Nullable="false" />
           <Property Name="CreatedDateTime" Type="datetime" Nullable="false" />
           <Property Name="CreatedByUserName" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="CreatedByDisplaName" Type="varchar" MaxLength="255" Nullable="false" />
@@ -298,8 +300,7 @@ warning 6002: The table/view 'NMVM.dbo.PositionHistory' does not have a primary 
     FROM [dbo].[PositionHistory] AS [PositionHistory]</DefiningQuery>
           </EntitySet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="NMVM_Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -342,6 +343,7 @@ warning 6002: The table/view 'NMVM.dbo.PositionHistory' does not have a primary 
           <Property Name="ModifiedDateTime" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="ModifiedByDisplayName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ModifiedByUserName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" />
         </EntityType>
         <EntityType Name="Position">
           <Key>
@@ -436,6 +438,7 @@ warning 6002: The table/view 'NMVM.dbo.PositionHistory' does not have a primary 
           <Property Name="ModifiedDateTime" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="ModifiedByUserName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ModifiedByDisplaName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IsActiveFlag" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="UserRole">
           <Key>
@@ -585,6 +588,7 @@ warning 6002: The table/view 'NMVM.dbo.PositionHistory' does not have a primary 
           <EntitySetMapping Name="Employees">
             <EntityTypeMapping TypeName="NMVM_Model.Employee">
               <MappingFragment StoreEntitySet="Employee">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="EmployeeNumber" ColumnName="EmployeeNumber" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
@@ -687,6 +691,7 @@ warning 6002: The table/view 'NMVM.dbo.PositionHistory' does not have a primary 
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="NMVM_Model.User">
               <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="IsActiveFlag" ColumnName="IsActiveFlag" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Username" ColumnName="Username" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />

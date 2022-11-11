@@ -54,28 +54,41 @@ namespace nmvm.Controllers.nmvm
         /// <param name="user">The update content of the user</param>
         ///</Summary>
         [ResponseType(typeof(void))]
-        public async Task<IHttpActionResult> PutUser(int id, User user)
+        public async Task<IHttpActionResult> PutUser(int id, [FromBody] dynamic user)
         {
+            int _id;
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != user.Id)
+            try
+            {
+                if (Int32.TryParse(user.id.Value.ToString(), out _id))
+                {
+                    _id = Int32.Parse(user.id.Value.ToString());
+                }
+            }
+            catch (Exception e)
+            {
+                return Content(HttpStatusCode.BadRequest, "Error Message: " + e.Message);
+            }
+
+            if (id != _id)
             {
                 return BadRequest();
             }
 
             User existingUser = db.Users.Where(u => u.Id == id).First();
-
+            User merge = ObjectMerger.UpsertDynamic(existingUser, user);
             if (existingUser != null)
             {
-                existingUser = ObjectMerger.Upsert(existingUser, user);
-                existingUser.ModifiedDateTime = DateTime.Now;
+                db.Entry(existingUser).CurrentValues.SetValues(merge);
 
                 try
                 {
-                    await db.SaveChangesAsync();
+                     await db.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {

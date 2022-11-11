@@ -19,6 +19,7 @@ GO
         ModifiedDateTime DATETIME NOT NULL DEFAULT SYSDATETIME(),
         ModifiedByDisplayName VARCHAR(255) NOT NULL DEFAULT SYSTEM_USER,
         ModifiedByUserName VARCHAR(255) NOT NULL DEFAULT SYSTEM_USER,
+        IsActive BIT DEFAULT(1),
         CONSTRAINT PK_Employee PRIMARY KEY (Id)
     )
 GO

@@ -492,7 +492,7 @@
              <param name="id">The id of the user</param>
             </Summary>
         </member>
-        <member name="M:nmvm.Controllers.nmvm.UsersController.PutUser(System.Int32,nmvm.Models.nmvm.User)">
+        <member name="M:nmvm.Controllers.nmvm.UsersController.PutUser(System.Int32,System.Object)">
             <Summary>
              Update the user
              <param name="id">The id of the user</param>
@@ -514,13 +514,23 @@
         </member>
         <member name="T:nmvm.Utilities.ObjectMerger">
             <summary>
-            
+            This class provides upsert methods to update an base object by using the values brought by the override object
             </summary>
         </member>
-        <member name="M:nmvm.Utilities.ObjectMerger.Upsert``1(``0,``0)">
+        <member name="M:nmvm.Utilities.ObjectMerger.UpsertDynamic``1(``0,System.Object)">
             <summary>
-            
+             Merge object property values.
+             The baseObject and the overrideObject can be of different type 
+             <param name="baseObject">The object with the base value set that awaits changes</param>
+             <param name="overrideObject">The object with the change value set that awaits merge</param>
             </summary>
+        </member>
+        <member name="M:nmvm.Utilities.ObjectMerger.ToLowerFirstChar(System.String)">
+            <summary>
+            Convert the first letter of a string to lower case
+            </summary>
+            <param name="input">the string value to be converted</param>
+            <returns></returns>
         </member>
     </members>
 </doc>

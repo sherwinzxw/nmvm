@@ -31,5 +31,6 @@ namespace nmvm.Models.nmvm
         public System.DateTime ModifiedDateTime { get; set; }
         public string ModifiedByDisplayName { get; set; }
         public string ModifiedByUserName { get; set; }
+        public Nullable<bool> IsActive { get; set; }
     }
 }
