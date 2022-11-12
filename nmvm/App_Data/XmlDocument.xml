@@ -481,6 +481,69 @@
             </summary>
             <param name="documentPath">The physical path to XML document.</param>
         </member>
+        <member name="T:nmvm.Controllers.nmvm.EmployeesController">
+            <summary>
+            The Restful API controller for the interactions with the Employee data
+            </summary>
+        </member>
+        <member name="M:nmvm.Controllers.nmvm.EmployeesController.GetEmployees">
+            <Summary>
+             List the employees
+            </Summary>
+        </member>
+        <member name="M:nmvm.Controllers.nmvm.EmployeesController.GetEmployee(System.Int32)">
+            <Summary>
+             Get the employee by its id
+             <param name="id">The id of the employee</param>
+            </Summary>
+        </member>
+        <member name="M:nmvm.Controllers.nmvm.EmployeesController.PutEmployee(System.Int32,System.Object)">
+            <Summary>
+             Update the employee
+             <param name="id">The id of the employee</param>
+             <param name="employee">The update content of the employee</param>
+            </Summary>
+        </member>
+        <member name="M:nmvm.Controllers.nmvm.EmployeesController.PostEmployee(nmvm.Models.nmvm.Employee)">
+            <Summary>
+             Create a new employee
+             <param name="employee">The content of the new employee</param>
+            </Summary>
+        </member>
+        <member name="T:nmvm.Controllers.nmvm.PositionsController">
+            <summary>
+            The Restful API controller for the interactions with the Position data
+            </summary>
+        </member>
+        <member name="M:nmvm.Controllers.nmvm.PositionsController.GetPositions">
+            <Summary>
+             List the positions
+            </Summary>
+        </member>
+        <member name="M:nmvm.Controllers.nmvm.PositionsController.GetPosition(System.Int32)">
+            <Summary>
+             Get the position by its id
+             <param name="id">The id of the position</param>
+            </Summary>
+        </member>
+        <member name="M:nmvm.Controllers.nmvm.PositionsController.PutPosition(System.Int32,System.Object)">
+            <Summary>
+             Update the position
+             <param name="id">The id of the position</param>
+             <param name="position">The update content of the position</param>
+            </Summary>
+        </member>
+        <member name="M:nmvm.Controllers.nmvm.PositionsController.PostPosition(nmvm.Models.nmvm.Position)">
+            <Summary>
+             Create a new position
+             <param name="position">The content of the new position</param>
+            </Summary>
+        </member>
+        <member name="T:nmvm.Controllers.nmvm.UsersController">
+            <summary>
+            The Restful API controller for the interactions with the User data
+            </summary>
+        </member>
         <member name="M:nmvm.Controllers.nmvm.UsersController.GetUsers">
             <Summary>
              List the users
@@ -505,12 +568,26 @@
              <param name="user">The content of the new user</param>
             </Summary>
         </member>
-        <member name="M:nmvm.Controllers.ValuesController.Get(System.Int32)">
+        <member name="M:nmvm.Models.nmvm.Employee.New(nmvm.Models.nmvm.Employee)">
             <summary>
-            Just a demo
+            Construct a new employee with new default values;
             </summary>
-            <param name="id">The ID of the data.</param>
-            <example>Some example content</example>
+            <param name="employee">The employee data from the POST method</param>
+            <returns></returns>
+        </member>
+        <member name="M:nmvm.Models.nmvm.Position.New(nmvm.Models.nmvm.Position)">
+            <summary>
+            Construct a new position with new default values;
+            </summary>
+            <param name="position">The position data from the POST method</param>
+            <returns></returns>
+        </member>
+        <member name="M:nmvm.Models.nmvm.User.New(nmvm.Models.nmvm.User)">
+            <summary>
+            Construct a new user with new default values;
+            </summary>
+            <param name="user">The user data from the POST method</param>
+            <returns></returns>
         </member>
         <member name="T:nmvm.Utilities.ObjectMerger">
             <summary>
@@ -524,6 +601,14 @@
              <param name="baseObject">The object with the base value set that awaits changes</param>
              <param name="overrideObject">The object with the change value set that awaits merge</param>
             </summary>
+        </member>
+        <member name="M:nmvm.Utilities.ObjectMerger.HasProperty(System.Collections.Generic.List{System.String},System.String)">
+            <summary>
+            This static method evaluate the existance of a property by checking its name against a list of object property names
+            </summary>
+            <param name="keys">The list of property names, or keys</param>
+            <param name="propertyName">The name of the property which undergoes the check</param>
+            <returns></returns>
         </member>
         <member name="M:nmvm.Utilities.ObjectMerger.ToLowerFirstChar(System.String)">
             <summary>

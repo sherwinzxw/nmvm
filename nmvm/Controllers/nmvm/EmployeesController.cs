@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
@@ -14,17 +10,27 @@ using nmvm.Utilities;
 
 namespace nmvm.Controllers.nmvm
 {
+    /// <summary>
+    /// The Restful API controller for the interactions with the Employee data
+    /// </summary>
     public class EmployeesController : ApiController
     {
         private NMVM_Entities db = new NMVM_Entities();
 
         // GET: api/Employees
+        ///<Summary>
+        /// List the employees
+        ///</Summary>
         public IQueryable<Employee> GetEmployees()
         {
             return db.Employees;
         }
 
         // GET: api/Employees/5
+        ///<Summary>
+        /// Get the employee by its id
+        /// <param name="id">The id of the employee</param>
+        ///</Summary>
         [ResponseType(typeof(Employee))]
         public async Task<IHttpActionResult> GetEmployee(int id)
         {
@@ -38,6 +44,11 @@ namespace nmvm.Controllers.nmvm
         }
 
         // PUT: api/Employees/5
+        ///<Summary>
+        /// Update the employee
+        /// <param name="id">The id of the employee</param>
+        /// <param name="employee">The update content of the employee</param>
+        ///</Summary>
         [ResponseType(typeof(void))]
         public async Task<IHttpActionResult> PutEmployee(int id, [FromBody] dynamic employee)
         {
@@ -97,6 +108,10 @@ namespace nmvm.Controllers.nmvm
         }
 
         // POST: api/Employees
+        ///<Summary>
+        /// Create a new employee
+        /// <param name="employee">The content of the new employee</param>
+        ///</Summary>
         [ResponseType(typeof(Employee))]
         public async Task<IHttpActionResult> PostEmployee(Employee employee)
         {
@@ -105,26 +120,13 @@ namespace nmvm.Controllers.nmvm
                 return BadRequest(ModelState);
             }
 
-            db.Employees.Add(employee);
+            Employee newEmployee = new Employee().New(employee);
+
+            db.Employees.Add(newEmployee);
+
             await db.SaveChangesAsync();
 
-            return CreatedAtRoute("DefaultApi", new { id = employee.Id }, employee);
-        }
-
-        // DELETE: api/Employees/5
-        [ResponseType(typeof(Employee))]
-        public async Task<IHttpActionResult> DeleteEmployee(int id)
-        {
-            Employee employee = await db.Employees.FindAsync(id);
-            if (employee == null)
-            {
-                return NotFound();
-            }
-
-            db.Employees.Remove(employee);
-            await db.SaveChangesAsync();
-
-            return Ok(employee);
+            return CreatedAtRoute("DefaultApi", new { id = newEmployee.Id }, newEmployee);
         }
 
         protected override void Dispose(bool disposing)

@@ -71,8 +71,6 @@
     <Build Include="tables\access control\UserRole.sql" />
     <Build Include="tables\reference\ReferenceDomain.sql" />
     <Build Include="tables\reference\ReferenceValue.sql" />
-    <Build Include="procedures\usp_INSERT_User.sql" />
-    <Build Include="procedures\usp_UPDATE_User.sql" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="tables\main\PositionHistory.sql" />

@@ -1,22 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using nmvm;
 using nmvm.Models.nmvm;
 using nmvm.Utilities;
 
 namespace nmvm.Controllers.nmvm
 {
+    /// <summary>
+    /// The Restful API controller for the interactions with the User data
+    /// </summary>
     public class UsersController : ApiController
     {
         private NMVM_Entities db = new NMVM_Entities();
@@ -88,7 +84,7 @@ namespace nmvm.Controllers.nmvm
 
                 try
                 {
-                     await db.SaveChangesAsync();
+                    await db.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -124,27 +120,13 @@ namespace nmvm.Controllers.nmvm
                 return BadRequest(ModelState);
             }
 
-            db.Users.Add(user);
+            User newUser = new User().New(user);
+
+            db.Users.Add(newUser);
             
             await db.SaveChangesAsync();
 
-            return CreatedAtRoute("DefaultApi", new { id = user.Id }, user);
-        }
-
-        // DELETE: api/Users/5
-        [ResponseType(typeof(User))]
-        public async Task<IHttpActionResult> DeleteUser(int id)
-        {
-            User user = await db.Users.FindAsync(id);
-            if (user == null)
-            {
-                return NotFound();
-            }
-
-            db.Users.Remove(user);
-            await db.SaveChangesAsync();
-
-            return Ok(user);
+            return CreatedAtRoute("DefaultApi", new { id = newUser.Id }, newUser);
         }
 
         protected override void Dispose(bool disposing)

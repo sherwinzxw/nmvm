@@ -179,10 +179,12 @@
     <Compile Include="Controllers\nmvm\EmployeesController.cs" />
     <Compile Include="Controllers\nmvm\PositionsController.cs" />
     <Compile Include="Controllers\nmvm\UsersController.cs" />
-    <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Methods\Constructors\EmployeeConstructor.cs" />
+    <Compile Include="Methods\Constructors\PositionConstructor.cs" />
+    <Compile Include="Methods\Constructors\UserConstructor.cs" />
     <Compile Include="Models\nmvm\Backfill.cs">
       <DependentUpon>nmvm_edm.tt</DependentUpon>
     </Compile>

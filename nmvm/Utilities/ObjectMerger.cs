@@ -1,9 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Dynamic;
 using System.Linq;
-using System.Web;
 
 namespace nmvm.Utilities
 {
@@ -76,6 +74,12 @@ namespace nmvm.Utilities
             return output;
         }
 
+        /// <summary>
+        /// This static method evaluate the existance of a property by checking its name against a list of object property names
+        /// </summary>
+        /// <param name="keys">The list of property names, or keys</param>
+        /// <param name="propertyName">The name of the property which undergoes the check</param>
+        /// <returns></returns>
         private static bool HasProperty(List<string> keys, string propertyName)
         {
             var match = keys.FirstOrDefault(stringToCheck => stringToCheck.Contains(propertyName));
