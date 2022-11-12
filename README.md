@@ -1,5 +1,6 @@
-<h1>Nursing and Midwifery Vacancy Management (NMVM) system</h1>
+#Work in progress
+<h2>Nursing and Midwifery Vacancy Management (NMVM) system</h2>
 
-<h2>Background</h2>
+<h3>Background</h3>
 <p>The NMVM system development project is an initiative of the Health hospital system to improvement the management of nurse and midwife vacancies. The vacancy can be a result of mixed reasons, such as employee sickness, planned and unplanned leaves, retirements and resignations, and difficulting in recruitments. Importantly, a vacancy is always backfilled with employees from the existing resource pool, and the recording of the backfilling information, including the employee details, employee salary levels, backfill durations, and so on, are critically contribution to the quality of fair payments as well as compensation to the backfilling employee.</p>
 <p>The current business model relies heavily on the use of notepads, papers, excel worksheets, and such model has badly resulted in the incorrect or worse even, missed recordings of employee backfill information. Consequently, the health employees time by time will experience difficulty to provide evidence for the due compensation owed to them. As a result, the NMVM project has been initiated to assist the hospital management team and its staff, to improve the outcome of vacancy control and backfill recording.</p>
