@@ -9,5 +9,5 @@
 <h5>Default</h5>
 <img src='https://raw.githubusercontent.com/sherwinzxw/nmvm/master/NMVM%20dashboard.PNG' style="border:1px solid #333;" />
 
-<h5>Default</h5>
-<img src='https://raw.githubusercontent.com/sherwinzxw/nmvm/master/NMVM%20dashboard%20UnitProfile.PNG' style="border:1px solid #333;" />
+<h5>Unit Profile subview</h5>
+<img src='https://github.com/sherwinzxw/nmvm/blob/master/NMVM%20dashboard_UnitProfile.PNG' style="border:1px solid #333;" />
