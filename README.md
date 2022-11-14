@@ -6,4 +6,4 @@
 <p>The current business model relies heavily on the use of notepads, papers, excel worksheets, and such model has badly resulted in the incorrect or worse even, missed recordings of employee backfill information. Consequently, the health employees time by time will experience difficulty to provide evidence for the due compensation owed to them. As a result, the NMVM project has been initiated to assist the hospital management team and its staff, to improve the outcome of vacancy control and backfill recording.</p>
 
 <h3>Dashboard Preview</h3>
-![This is the preview](https://raw.githubusercontent.com/sherwinzxw/nmvm/master/NMVM%20dashboard.PNG)
+<img src='https://raw.githubusercontent.com/sherwinzxw/nmvm/master/NMVM%20dashboard.PNG' style="border:1px solid #333;" />
