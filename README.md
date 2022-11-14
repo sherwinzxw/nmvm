@@ -12,3 +12,7 @@
 <h5>Unit Profile subview</h5>
 <kbd>
 <img src='https://github.com/sherwinzxw/nmvm/blob/master/NMVM%20dashboard_UnitProfile.PNG' style="border:1px solid #333;" /></kbd>
+
+<h5>Position Details subview</h5>
+<kbd>
+<img src='https://github.com/sherwinzxw/nmvm/blob/master/NMVM%20dashboard_PositionDetails.PNG' style="border:1px solid #333;" /></kbd>
